@@ -1,0 +1,34 @@
+generate dataset:
+
+
+Create 5(n) buckets for 5(n) items
+Frequency paramemter: frequency of all the items across all the buckets.
+zipf factor - 0.99 (high a , low e)(skewed)
+0.1 means same frequency for all items set (uniform)
+skew towards the first item - 0.99 (a is more)
+
+
+(table)
+item ---------------------- frequency (table)
+
+
+
+Genenerate - random number for items in a transaction (eg: 3-7)
+select random items for every transaction
+
+DEMO:
+ZIPF distribution: for frequency of items 
+Start with 10 or 5 items.
+Actual demo with 100 to 500 items???
+Transaction ~ 10000
+use zipf =0.5
+
+Give a default 
+
+Give main memory statistics
+
+Give execution time (in apt format)
+
+assn -(total no. of items) -(support)
+
+itemset-------------------support(about 50)-average support
