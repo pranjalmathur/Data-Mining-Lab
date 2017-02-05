@@ -65,14 +65,14 @@ public class DatasetGenerator {
         PrintWriter fw = new PrintWriter(write);
 
         if (args.length != 3) {
-            System.out.println("usage: ./zipf numOfItems zipFactor numOfTransactions");
-            System.exit(-1);
+            //System.out.println("usage: ./zipf numOfItems zipFactor numOfTransactions");
+            //System.exit(-1);
         }
 
-        DatasetGenerator zipf = new DatasetGenerator(Integer.valueOf(args[0]), Double.valueOf(args[1]));
+        DatasetGenerator zipf = new DatasetGenerator(100, 0.5);
         ArrayList<Integer> array_of_items = new ArrayList<Integer>();
         int cumm_prob = 0;
-        for (int i = 1; i <= Integer.valueOf(args[0]); i++) {
+        for (int i = 1; i <= 100; i++) {
             //This returns me the probability of each item in my dataset
             cumm_prob += Math.round(zipf.getProbability(i) * 100);
             array_of_items.add(cumm_prob);
@@ -84,12 +84,12 @@ public class DatasetGenerator {
         //generates k-sized itemsets with k between 1 and 7
         Set<Integer> transaction = new HashSet<Integer>();
 
-        for (int j = 0; j < Integer.valueOf(args[2]); j++) {
+        for (int j = 0; j < 15000; j++) {
             itemsetsize = (int) ((Math.round(Math.random() * 100) % 7) + 1);
             k = 1;
             while (k <= itemsetsize) {
                 trans_item = (int) Math.round(Math.random() * 100);
-                for (int c = 0; c < Integer.valueOf(args[0]); c++) {
+                for (int c = 0; c < 100; c++) {
                     if ((array_of_items.get(c)) >= trans_item) {
                         flag = transaction.add(c + 1);
                         if (flag == true) {
@@ -102,7 +102,10 @@ public class DatasetGenerator {
 
             Iterator it = transaction.iterator();
             while (it.hasNext()) {
-                fw.print(it.next() + ",");
+                fw.print(it.next() + "");
+                if (it.hasNext()) {
+                    fw.print(",");
+                }
             }
             transaction.clear();
             fw.println();
