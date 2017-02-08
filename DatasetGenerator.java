@@ -1,7 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ Data mining and warehousing
+ Graded Lab Assignment 1 
+ Authors:
+ Junaid Tinwala 
+ Pranjal Mathur
+ Prerna 
+
  */
 package datasetgenerator;
 
@@ -21,8 +25,9 @@ import java.util.Set;
 public class DatasetGenerator {
 
     private Random rnd = new Random(0);
-    private int size;
-    private double skew;
+    private static int size;
+    private static double skew;
+    private static int numOfTransactions;
     private double bottom = 0;
 
     public DatasetGenerator(int size, double skew) {
@@ -34,27 +39,6 @@ public class DatasetGenerator {
         }
     }
 
-    // the next() method returns an random rank id.
-    // The frequency of returned rank ids are follows Zipf distribution.
-    public int next() {
-        int rank;
-        double friquency = 0;
-        double dice;
-
-        rank = rnd.nextInt(size) + 1;
-        friquency = (1.0d / Math.pow(rank, this.skew)) / this.bottom;
-        dice = rnd.nextDouble();
-
-        while (!(dice < friquency)) {
-            rank = rnd.nextInt(size) + 1;
-            friquency = (1.0d / Math.pow(rank, this.skew)) / this.bottom;
-            dice = rnd.nextDouble();
-        }
-
-        return rank;
-    }
-
-    // This method returns a probability that the given rank occurs.
     public double getProbability(int rank) {
         return (1.0d / Math.pow(rank, this.skew)) / this.bottom;
     }
@@ -65,8 +49,13 @@ public class DatasetGenerator {
         PrintWriter fw = new PrintWriter(write);
 
         if (args.length != 3) {
-            //System.out.println("usage: ./zipf numOfItems zipFactor numOfTransactions");
-            //System.exit(-1);
+            size = 100;
+            skew = 0.5;
+            numOfTransactions = 10000;
+        } else {
+            size = Integer.parseInt(args[0]);
+            skew = Double.parseDouble(args[1]);
+            numOfTransactions = Integer.parseInt(args[2]);
         }
 
         DatasetGenerator zipf = new DatasetGenerator(100, 0.5);
