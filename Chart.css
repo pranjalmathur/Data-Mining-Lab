@@ -1,0 +1,16 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 19 Feb, 2017, 9:08:27 PM
+    Author     : dell pc
+*/
+
+.default-color5.chart-symbol { /* hollow circle */
+    -fx-background-color: #860061, white;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+}
